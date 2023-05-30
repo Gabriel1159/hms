@@ -10,8 +10,8 @@
                 <Listbox v-model="secondRoom" :options="secondRooms" optionLabel="name" class="w-full md:w-14rem" />
             </div>
         </div>
-        <div style="position: absolute; left: 22%;" v-show="showDoctors">
-            {{ doctorList }}
+        <div style="position: absolute; left: 24%;" v-show="showDoctors">
+            <DoctorChart /> 
         </div>
     </div>
     
@@ -21,7 +21,8 @@
 import { onMounted, ref, watchEffect } from 'vue';
 import Listbox from 'primevue/listbox'
 import axios from 'axios';
-// import axios from 'axios';
+import emitter from './bus';
+import DoctorChart from './doctorChart.vue';
 
 let firstRoom = ref({})
 let secondRoom = ref({})
@@ -35,9 +36,9 @@ let secondRooms = ref([
     {name: 'room21'},
     {name: 'room31'}
 ])
-let doctorList = ref([])
 
 let showSecond = ref(false)
+let showDoctors = ref(false)
 
 watchEffect(()=>{
     if(firstRoom.value.name==undefined)
@@ -46,7 +47,7 @@ watchEffect(()=>{
     }
     else if(firstRoom.value.name!=undefined&&secondRoom.value.name==undefined)
     {
-        /*axios({
+        axios({
             method: 'post',
             url: 'http://121.199.161.134:8080/getSecondRoomsByFID',
             params: {
@@ -54,11 +55,13 @@ watchEffect(()=>{
             }
         }).then((res)=>{
             console.log(res)
-        })*/
+        })
         showSecond.value = true
     }
     else
     {
+        showDoctors.value = true
+        emitter.emit("roomName", secondRoom)
         showSecond.value = false
         axios({
             method: 'get',
@@ -73,7 +76,7 @@ watchEffect(()=>{
 })
 
 onMounted(()=>{
-    /*axios({
+    axios({
         method: 'get',
         url: 'http://121.199.161.134:8080/getFirstRooms',
         params: {
@@ -81,7 +84,7 @@ onMounted(()=>{
         }
     }).then((res)=>{
         console.log(res)
-    })*/
+    })
 
     
 })

@@ -1,3 +1,8 @@
 <template>
-    <h1>新闻管理界面</h1>
+    <Button label="添加新闻" />
+    
 </template>
+
+<script setup>
+import Button from 'primevue/button';
+</script>
