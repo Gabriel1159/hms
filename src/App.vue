@@ -1,13 +1,16 @@
 <template>
-  <ManagerView />
+  <!-- <ManagerView /> -->
+  <demo />
 </template>
 
 <script>
 import ManagerView from './manager/ManagerView.vue'
+import demo from './demo.vue'
 export default {
   name: 'App',
   components: {
-   ManagerView
+   ManagerView,
+    demo
 }
 }
 </script>

@@ -6,13 +6,14 @@
             <Column field="id" header="id"></Column>
         </DataTable>
     </div>
-    {{ selectedProduct }}
+    <!-- {{ selectedProduct }} -->
 </template>
 
 <script setup>
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
+import { defineEmits } from 'vue'
 
 let selectedProduct = ref([])
 let products = [
@@ -29,4 +30,10 @@ let products = [
         id: 3
     }
 ]
+
+const emit = defineEmits(['select-items'])
+watchEffect(()=>{
+    emit("select-items", selectedProduct)
+})
+
 </script>
