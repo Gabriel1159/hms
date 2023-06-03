@@ -1,16 +1,18 @@
 <template>
   <!-- <ManagerView /> -->
-  <demo />
+  <ManagerEnter />
 </template>
 
 <script>
 import ManagerView from './manager/ManagerView.vue'
 import demo from './demo.vue'
+import ManagerEnter from './manager/ManagerEnter.vue';
 export default {
   name: 'App',
   components: {
-   ManagerView,
-    demo
+    ManagerView,
+    demo,
+    ManagerEnter
 }
 }
 </script>

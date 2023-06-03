@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from "vue-router"
+import {createRouter, createWebHashHistory} from "vue-router"
 import ManagerInfo from './components/infoManage/ManagerInfo'
 import NotifyInfo from './components/notifyManage/NotifyInfo'
 import jobInfo from './components/jobManage/jobInfo'
@@ -7,7 +7,7 @@ import DefaultView from './DefaultView'
 
 
 const managerRouter = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes: [
         {
             path: '/',
