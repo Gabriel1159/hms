@@ -11,7 +11,7 @@
             </div>
         </div>
         <div style="position: absolute; left: 24%;" v-show="showDoctors">
-            <DoctorChart /> 
+            <DoctorChart :doctors="doctors"/> 
         </div>
     </div>
     
@@ -26,16 +26,9 @@ import DoctorChart from './doctorChart.vue';
 
 let firstRoom = ref({})
 let secondRoom = ref({})
-let firstRooms = ref([
-    {name: 'room1'},
-    {name: 'room2'},
-    {name: 'room3'}
-])
-let secondRooms = ref([
-    {name: 'room11'},
-    {name: 'room21'},
-    {name: 'room31'}
-])
+let firstRooms = ref([])
+let secondRooms = ref([])
+let doctors = ref([])
 
 let showSecond = ref(false)
 let showDoctors = ref(false)
@@ -55,6 +48,7 @@ watchEffect(()=>{
             }
         }).then((res)=>{
             console.log(res)
+            secondRooms.value = res.data.data
         })
         showSecond.value = true
     }
@@ -71,6 +65,7 @@ watchEffect(()=>{
             }
         }).then((res)=>{
             console.log(res)
+            doctors.value = res.data.data
         })
     }
 })
@@ -84,6 +79,7 @@ onMounted(()=>{
         }
     }).then((res)=>{
         console.log(res)
+        firstRooms.value = res.data.data
     })
 
     

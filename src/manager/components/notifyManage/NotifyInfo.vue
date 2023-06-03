@@ -2,29 +2,33 @@
     <div>
         <div style="display:flex; justify-content:center; align-items:center;">
             <div class="card">
-                <Card v-for="item in array" :key="array.indexOf(item)" style="width: 50em; margin: 10px">
+                <Card v-for="item in array" :key="array.indexOf(item)" style="width: 45em; margin: 10px">
                     <template #title>{{ item.infoType==1?string1:string2 }}</template>
                     <template #content>
-                        <table>
-                            <tr style="text-align: center;">
-                                <td style="width: 120px;">发起人：</td>
-                                <td style="width: 300px;">{{ item.name }}</td>
-                            </tr>
-                            <tr>
-                                <td>所在科室：</td>
-                                <td>{{ item.sectionFirName+"-"+item.sectionSecName }}</td>
-                            </tr>
-                            <tr>
-                                <td>发起时间：</td>
-                                <td>{{ item.time.split("T")[0]+" "+item.time.split("T")[1] }}</td>
-                            </tr>
-                        </table>
-                        <div class="card flex justify-content-center">
-                            <Button @click="getDetailInfo(item)">详细信息</Button>
+                        <div  style="display: flex; justify-content: center;">
+                            <table>
+                                <tr style="text-align: center;">
+                                    <td style="width: 120px;">发起人：</td>
+                                    <td style="width: 300px;">{{ item.name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>所在科室：</td>
+                                    <td>{{ item.sectionFirName+"-"+item.sectionSecName }}</td>
+                                </tr>
+                                <tr>
+                                    <td>发起时间：</td>
+                                    <td>{{ item.time.split("T")[0]+" "+item.time.split("T")[1] }}</td>
+                                </tr>
+                            </table>
+                        </div>                        
+                        <div class="card flex justify-content-center" style="margin-top: 20px;">
+                            <Button @click="getDetailInfo(item)">详细信息</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <Button @click="acceptNotif(item.infoId)">同意</Button>&nbsp;&nbsp;&nbsp;
+                            <Button @click="declineNotif(item.infoId)">拒绝</Button>
                             <Dialog v-model:visible="visibleList[array.indexOf(item)].value" modal header="详细信息" :style="{ width: '50vw' }">
                                 <table>
                                     <tr>
-                                        <td>姓名：</td>
+                                        <td style="width: 100px;">姓名：</td>
                                         <td>{{ detailInfo.doctorName }}</td>
                                     </tr>
                                     <tr>
@@ -49,10 +53,6 @@
                                     </tr>
                                 </table>
                             </Dialog>
-                        </div>
-                        <div name="Buts">
-                            <Button @click="acceptNotif(item.infoId)">同意</Button>
-                            <Button @click="declineNotif(item.infoId)">拒绝</Button>
                         </div>
                     </template>
                 </Card>

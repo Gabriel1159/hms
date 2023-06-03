@@ -89,7 +89,7 @@
         show0.value = !show0.value
     }
     function submitChange() {
-        console.log(id)
+        console.log(id.value)
         console.log(infoNew)
         axios({
             method:'post',

@@ -55,6 +55,7 @@ let files = []
 function getFiles(event)
 {
     let files_t = event.target.files
+    console.log(files_t)
     for(var i=0; i<files_t.length; i++)
     {
         files.push(files_t[i])
